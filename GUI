@@ -1,0 +1,51 @@
+from tkinter import *
+from tkinter import ttk
+import logging
+from BackendPackage import backend
+
+logging.basicConfig(filename="blogger.log", level= logging.INFO, format="%(asctime)s %(levelname)s %(message)s")
+
+def no_pdf():
+    l3 = ttk.Label(frm, text = "No PDF found")
+    l3.grid(row = 4,column = 2)
+
+def final_pdf():
+    l2 = ttk.Label(frm, text = "Your Final PDF is ready!")
+    l2.grid(row = 4,column = 2)
+
+
+def print_label_pdf(file_list):
+    l1 = ttk.Label(frm, text="\n".join(file_list))
+    l1.grid(row=2, column=2)
+    b3 = ttk.Button(frm, text="Append_pdf", command=backend.mix_pdf)
+    b3.grid(row=3, column=1)
+
+def print_label(file_list):
+    l1 = ttk.Label(frm, text="\n".join(file_list))
+    l1.grid(row=2, column=0)
+    b2 = ttk.Button(frm, text ="Check_pdf", command= backend.check_pdf)
+    b2.grid(row = 2, column=1)
+
+try:
+    root = Tk()
+    frm = ttk.Frame(root, padding=10)
+    frm.grid()
+    e1 = ttk.Entry(frm)
+    e1.grid(row = 1, column=0)
+    b1 = ttk.Button(frm, text="Browse", command= backend.list_files)
+    b1.grid(row=1, column = 1)
+    root.mainloop()
+
+except Exception as e:
+    logging.error("GUI Exception raised", e)
+
+
+
+
+
+
+
+
+
+
+
